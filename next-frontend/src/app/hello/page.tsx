@@ -1,5 +1,6 @@
 "use client";
 import {useEffect, useState} from 'react';
+import Danny from "../components/danny";
 
 export default function Hello(){
     const [message, setMessage] = useState('');
@@ -34,7 +35,11 @@ export default function Hello(){
                 >
                 </input>
                 <input type = "submit" value = "Submit"></input>
-
+                
+                <Danny
+                    name = "bakaka"
+                    age = "5"
+                />
             </form>
             
             <p>Response from backend:</p>
