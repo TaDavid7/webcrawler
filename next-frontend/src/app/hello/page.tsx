@@ -34,12 +34,14 @@ export default function Hello(){
                     required
                 >
                 </input>
-                <input type = "submit" value = "Submit"></input>
-                
+                <input type = "submit" value = "Submit" ></input>
+                <p className = "bg-sky-600"></p>
+                <div className = "bg-sky-600">
                 <Danny
                     name = "bakaka"
                     age = "5"
                 />
+                </div>
             </form>
             
             <p>Response from backend:</p>
