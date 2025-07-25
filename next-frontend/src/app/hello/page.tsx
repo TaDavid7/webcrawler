@@ -25,15 +25,18 @@ export default function Hello(){
     }
 
     return (
-       <div>
-            {message}
-            <form onSubmit = {front_input}>
+       <div className = "flex flex-col items-center gap-10">
+            <h1 className = "text-4xl font-bold">Imporant Web Cralwer</h1>
+            <form onSubmit = {front_input} className = "flex flex-row gap-2">
+                <label className = "flex flex-row gap-2">
+                    Label for Input Box: (Good Practice)
                 <input
                     value = {reply}
                     onChange = {e => setReply(e.target.value)}
                     required
                 >
                 </input>
+                </label>
                 <input type = "submit" value = "Submit" ></input>
                 <p className = "bg-sky-600"></p>
                 <div className = "bg-sky-600">
