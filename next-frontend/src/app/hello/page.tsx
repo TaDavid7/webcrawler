@@ -38,16 +38,26 @@ export default function Hello() {
     }
 
     return (
+
         <div>
             <p>{message}</p>
 
             <form onSubmit={front_input}>
-                <input
+
+            <div className = "flex flex-col items-center gap-10">
+              <h1 className = "text-4xl font-bold">Imporant Web Cralwer</h1>
+              <form onSubmit = {front_input} className = "flex flex-row gap-2">
+                <label className = "flex flex-row gap-2">
+                    Label for Input Box: (Good Practice)
+
+                  <input
                     value={reply}
                     onChange={e => setReply(e.target.value)}
                     required
-                />
-                <input type="submit" value="Submit" />
+
+                  />
+                  <input type="submit" value="Submit" />
+                </label>
             </form>
 
             <p>{replyBack}</p>
