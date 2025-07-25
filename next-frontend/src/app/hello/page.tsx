@@ -5,6 +5,8 @@ import Danny from "../components/danny";
 export default function Hello(){
     const [message, setMessage] = useState('');
     const [reply, setReply] = useState('');
+    const [userInput, setUserInput] = useState('');
+    const [backendcon, setBackendCon] = useState("");
     const [replyback, setReplyBack] = useState('');
 
     useEffect(() => {
@@ -23,6 +25,17 @@ export default function Hello(){
             .then(res => res.text())
             .then(data => setReplyBack(data))
     }
+
+    const url = (e: React.FormEvent<HTMLFormElement>) => {
+        fetch("http://localhost:8080/api/crawl", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ url: userInput }),
+        })
+            .then(res => res.json())
+            .then(data => setBackendCon(data))
+    }
+    
 
     return (
        <div className = "flex flex-col items-center gap-10">
@@ -46,9 +59,19 @@ export default function Hello(){
                 />
                 </div>
             </form>
+
+            <form onSubmit = {url}>
+                <input
+                    value = {userInput}
+                    onChange = {e => setUserInput(e.target.value)}
+                    required
+                ></input>
+                <input type = "submit" value = "Submit"></input>
+            </form>
             
             <p>Response from backend:</p>
             {replyback}
+            {backendcon}
        </div>
     );
 }
