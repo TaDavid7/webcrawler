@@ -16,15 +16,26 @@ public class WebCrawlerFetch {
         Set<String> links = new HashSet<>();
 
         Document doc = Jsoup.connect(startUrl).get();
-
+        String something = doc.title();
         Elements aTags = doc.select("a[href]"); // All anchor tags with hrefs
 
         for (Element link : aTags) {
             String href = link.absUrl("href"); // Absolute URL
             if (!href.isEmpty()) {
-                links.add(href);
+                try {
+                    Document sussyBaka = Jsoup.connect(href)
+                            .userAgent("Mozilla/5.0")
+                            .timeout(10000)
+                            .get();
+                    String title = sussyBaka.title();
+                    System.out.println(title);
+                    links.add(href + title);
+                }
+                catch (IOException e) {
+                    System.out.println("skibidi");
+                }
             }
         }
-
-        return links;}
+        return links;
+    }
 }
