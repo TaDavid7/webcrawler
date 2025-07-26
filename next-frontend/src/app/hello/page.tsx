@@ -40,8 +40,10 @@ export default function Hello() {
     return (
         <div className = "flex flex-col items-center gap-10">
             <div className = "flex flex-col items-center gap-10">
-              <h1 className = "text-4xl font-bold">Imporant Web Cralwer</h1>
-              <form onSubmit = {front_input} className = "flex flex-row gap-2">
+              <h1 className = "text-glow text-4xl font-bold ">Imporant Web Cralwer</h1>
+              <div className="w-full bg-white/10 p-6 rounded-xl backdrop-blur-md shadow-md">
+
+              <form onSubmit = {front_input} className = "flex flex-row gap-2 ">
                 <label className = "flex flex-row gap-2">
                     Label for Input Box: (Good Practice)
 
@@ -49,28 +51,33 @@ export default function Hello() {
                     value={reply}
                     onChange={e => setReply(e.target.value)}
                     required
-
+                    placeholder="Test"
+                    className = "border-2"
                   />
                   <input type="submit" value="Submit" />
                 </label>
             </form>
             </div>
+            </div>
 
             <p>{replyBack}</p>
 
-            <form onSubmit={url}>
-                <label> Submit
-                <input
-                    value={userInput}
-                    onChange={e => setUserInput(e.target.value)}
-                    required
-                />
-                </label>
-                <label> 
-                <input type="submit" value="Submit" />
-                </label>
-            </form>
-
+            <div className=" bg-white/10 p-6 rounded-xl backdrop-blur-md shadow-md justify-center">
+                <form onSubmit={url} className = "flex flex-row gap-2 justify-center">
+                    <label className = "flex flex-row gap-2"> Submit
+                    <input
+                        value={userInput}
+                        onChange={e => setUserInput(e.target.value)}
+                        required
+                        placeholder="https://website.com"
+                        className = "border-2"
+                    />
+                    </label>
+                    <label> 
+                    <input type="submit" value="Submit" />
+                    </label>
+                </form>
+            </div>
             <p>Links Found:</p>
             {Array.isArray(backendCon) ? (
                 <ul>
@@ -82,6 +89,5 @@ export default function Hello() {
                 <p>{backendCon}</p> // error string or default
             )}
         </div>
-
     );
 }
