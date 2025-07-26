@@ -5,7 +5,7 @@ export default function Hello() {
     const [message, setMessage] = useState('');
     const [reply, setReply] = useState('');
     const [userInput, setUserInput] = useState('');
-    const [backendCon, setBackendCon] = useState<string[] | string>('');
+    const [backendCon, setBackendCon] = useState<[string, string][]>([]);
     const [replyBack, setReplyBack] = useState('');
 
     useEffect(() => {
@@ -33,8 +33,12 @@ export default function Hello() {
             body: JSON.stringify({ url: userInput }),
         })
             .then(res => res.json())
-            .then(data => setBackendCon(data))
-            .catch(err => setBackendCon("Error: " + err.message));
+            .then((data: Record<string,string> ) => {
+                const titles = Object.entries(data);
+                setBackendCon(titles);
+            })
+            //.catch(err => setBackendCon("Error: " + err.message));
+        
     }
 
     return (
@@ -81,8 +85,10 @@ export default function Hello() {
             <p>Links Found:</p>
             {Array.isArray(backendCon) ? (
                 <ul>
-                    {backendCon.map((link, idx) => (
-                        <li key={idx}>{link}</li>
+                    {backendCon.map(([link, title]) => (
+                        <li key={link}>
+                            <a href = {link} target = "_blank" rel = "noopener noreferrer">{title}</a>
+                        </li>
                     ))}
                 </ul>
             ) : (

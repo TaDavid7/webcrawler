@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ public class HelloController {
         String url = payload.get("url");
 
         try {
-            Set<String> links = crawlerService.crawlLinks(url);
+            HashMap<String, String> links = crawlerService.crawlLinks(url);
             return ResponseEntity.ok(links);
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)

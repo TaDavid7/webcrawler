@@ -9,11 +9,12 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.HashMap;
 
 @Service
 public class WebCrawlerFetch {
-    public Set<String> crawlLinks(String startUrl) throws IOException {
-        Set<String> links = new HashSet<>();
+    public HashMap<String, String> crawlLinks(String startUrl) throws IOException {
+        HashMap<String, String> links = new HashMap<>();
 
         Document doc = Jsoup.connect(startUrl).get();
         String something = doc.title();
@@ -29,7 +30,7 @@ public class WebCrawlerFetch {
                             .get();
                     String title = sussyBaka.title();
                     System.out.println(title);
-                    links.add(href + title);
+                    links.put(href, title);
                 }
                 catch (IOException e) {
                     System.out.println("skibidi");
